@@ -1,3 +1,15 @@
-<%= link_to "New Record", new_record_path %>
 
-<%= @json %>
+<p class="date">May<b>03</b></p>
+
+<h2 class="title">My sources</h2>
+
+<div class="entry">
+
+<%= link_to "New source", new_record_path %>
+
+<ul>
+<% for adoc in @docs %>
+  <li><%= link_to adoc["Source"], record_path(adoc["@metadata"]["@id"]) %></li>
+<% end %>
+</ul>
+</div>

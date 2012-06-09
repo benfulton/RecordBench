@@ -7,8 +7,126 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="header">
 
-<%= yield %>
+	<div id="logo">
+
+		<h1><a href="#">RecordBench </a></h1>
+
+	</div>
+
+	<div id="menu">
+
+		<ul>
+
+			<li class="active"><a href="#">Home</a></li>
+
+			<li class="active"><a href="#">Somewhere Else</a></li>
+		</ul>
+
+	</div>
+
+</div>
+
+<hr />
+
+<!-- end header -->
+
+<!-- start page -->
+
+<div id="wrapper">
+
+	<div id="page">
+
+		<!-- start content -->
+
+		<div id="content">
+
+			<div class="post">
+
+
+					<%= yield %>
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+		<!-- end content -->
+
+		<!-- start sidebar -->
+
+		<div id="sidebar">
+
+			<ul>
+
+				<li id="categories">
+
+					<h2>Categories</h2>
+
+					<ul>
+
+						<li><a href="#">Lorem Ipsum Dolor Sit Amit </a> (1) </li>
+
+						<li><a href="#">Uncategorized Here </a>(4) </li>
+
+					</ul>
+
+				</li>
+
+				<li id="calendar">
+
+					<h2>Calendar</h2>
+
+					<div id="calendar_wrap">
+
+					</div>
+
+				</li>
+
+				<li>
+
+					<h2>Lorem Ipsum Dolor</h2>
+
+					<ul>
+
+						<li><a href="#">Nulla luctus eleifend purus</a></li>
+
+						<li><a href="#">Praesent scelerisque scelerisque </a></li>
+
+					</ul>
+
+				</li>
+
+			</ul>
+
+		</div>
+
+		<!-- end sidebar -->
+
+		<br style="clear: both;" />
+
+	</div>
+
+</div>
+
+<!-- end page -->
+
+<!-- start footer -->
+
+<div id="footer">
+
+<p id="legal"> &copy;2012 RecordBench . All Rights Reserved.
+
+	&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+
+	Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>. Photos by <a href="http://fotogrph.com/">fotogrph</a>.</p>
+
+<!-- end footer -->
+
+</div>
 
 </body>
 </html>

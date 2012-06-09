@@ -1,0 +1,14 @@
+<p class="date">May<b>03</b></p>
+
+<h2 class="title"><%= @doc["Source"] %></h2>
+
+<div class="entry">
+	
+<ul>
+<% for adoc in @doc["Triples"] %>
+  <li><%= adoc["Subject"] %> - <%= adoc["Predicate"] %> - <%= adoc["Object"] %></li>
+<% end %>
+</ul>
+
+</ul>
+</div>
