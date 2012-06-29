@@ -1,0 +1,22 @@
+<p class="date">May<b>03</b></p>
+
+<h2 class="title"><%= @doc["Source"] %></h2>
+
+<div class="entry">
+  
+<%= form_tag('/records/' + @doc["@metadata"]["@id"], {:method => "put"} ) do %>
+<ul>  
+  <% @doc["Triples"].each_with_index{|adoc,i| %>
+  <li>
+      <%= text_field_tag 'subject' + i.to_s, adoc["Subject"] %>
+  - 
+      <%= text_field_tag 'Predicate' + i.to_s, adoc["Predicate"] %>
+  -
+      <%= text_field_tag 'Object' + i.to_s, adoc["Object"] %>
+  </li>
+<% } %>
+</ul>
+<%= submit_tag( value="Update", options = {} ) %>
+<% end %>
+
+</div>

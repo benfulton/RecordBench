@@ -44,6 +44,11 @@
 
 			<div class="post">
 
+					<% flash.each do |key,value| %>
+					<div class='flash' id='<%= key %>'>
+						<%= value %>
+					</div>
+					<% end %>
 
 					<%= yield %>
 

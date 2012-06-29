@@ -13,6 +13,12 @@ RecordBench::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
      resources :records
 
+  # resources :records do
+  #  member do
+  #    post 'update'
+  #  end
+  # end
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
@@ -48,7 +54,7 @@ RecordBench::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'records#index'
 
   # See how all your routes lay out with "rake routes"
 
