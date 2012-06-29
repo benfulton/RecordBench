@@ -1,35 +1,39 @@
 class RecordsController < ApplicationController
 
-  def index
-    loadDocs()
-    @docs = JSON.parse(Rails.cache.read('docs')).reject{|doc|doc["Source"].nil?}
+  before_filter :loadDocs
 
+  def doc_list
+    JSON.parse(Rails.cache.read('docs'))
+  end
+  
+  def index
+    @docs = doc_list.reject{|doc|doc["Source"].nil?}
   end
   
   def show
-     loadDocs()
-     @doc = JSON.parse(Rails.cache.read('docs')).find{|doc|doc["@metadata"]["@id"] == params[:id]}
+     @doc = find(params[:id])
   end
   
   def edit
-     loadDocs()
-     @doc = JSON.parse(Rails.cache.read('docs')).find{|doc|doc["@metadata"]["@id"] == params[:id]}
+     @doc = find(params[:id])
   end
 
   def update
-     loadDocs()
-     @doc = JSON.parse(Rails.cache.read('docs')).find{|doc|doc["@metadata"]["@id"] == params[:id]}
-      flash.now[:notice] = 'Record updated.'
-     #redirect_to :action => 'show', :id => params[:id]
+     @doc = find(params[:id])
+     flash.now[:notice] = 'Record updated.'
      render :action => "show"
   end
 
+  def find(id)
+    doc_list.find{|doc|doc["@metadata"]["@id"] == id}
+  end
+  
   def loadDocs
     if !Rails.cache.exist?('docs')
       response = HTTParty.get('https://1.ravenhq.com/docs')
-      response = HTTParty.get(response.headers['oauth-source'], :headers => { "Api-Key" => 'c80aa865-da7d-4c16-8444-ee09e693e9c3'})
+      response = HTTParty.get(response.headers['oauth-source'], :headers => { "Api-Key" => ENV['RAVEN_KEY']})
       auth = "Bearer " + response.body
-      response = HTTParty.get('https://1.ravenhq.com/databases/benfulton-SourcedTriples/docs/?start=0&pageSize=10', :headers => { "Authorization" => auth })
+      response = HTTParty.get( ENV['RAVEN_DB'] + '/docs/?start=0&pageSize=10', :headers => { "Authorization" => auth })
       Rails.cache.write('docs', response.body)
     end
   end
